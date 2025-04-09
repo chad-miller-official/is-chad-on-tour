@@ -1,0 +1,8 @@
+html
+  head
+    title= title
+    link(rel='stylesheet', type='text/css', href='/styles.css')
+  body
+    div(id='container')
+      h1(class='verdict-' + verdict.toLowerCase())= verdict
+      h2= message
