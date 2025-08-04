@@ -1,8 +1,19 @@
 html
   head
     title= title
-    link(rel='stylesheet', type='text/css', href='/styles.css')
+    link(rel='stylesheet', type='text/css', href='/css/styles.css')
+    script(src='/js/icot.js')
   body
     div(id='container')
-      h1(class='verdict-' + verdict.toLowerCase())= verdict
-      h2= message
+      div(id='message')
+        h1(class='verdict-' + verdict.toLowerCase())= verdict
+        h2= message
+      hr
+      div(id='posts')
+        div(id='postList')
+          h2= 'The Latest'
+          ol(reversed)
+            each post in posts
+              li
+                a(href='#' + post)= post
+        iframe(id='postFrame' src='./html/default.html' title='Landing page')

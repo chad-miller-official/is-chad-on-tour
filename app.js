@@ -1,14 +1,24 @@
 const axios = require('axios')
+const fs = require('fs')
 const express = require('express')
+const showdown = require('showdown')
 
 const app = express()
 const port = 3000
 
+const converter = new showdown.Converter()
+const postsDir = './posts'
+
+const localeDateStringOpts = {
+  weekday: 'long', year: 'numeric', month: 'long', day: 'numeric',
+}
+
 app.set('view engine', 'pug')
-app.use(express.static('styles'))
 
 app.get('/', async (req, res) => {
   const today = new Date()
+  today.setDate(today.getDate() - 1)
+
   const tomorrow = new Date(today)
   tomorrow.setDate(today.getDate() + 1)
 
@@ -25,13 +35,7 @@ app.get('/', async (req, res) => {
   const tourItem = axiosRes.data.items.find(
       item => item.summary.toLowerCase().includes('tour'))
 
-  let title
-  let message
-  let verdict
-
-  const localeDateStringOpts = {
-    weekday: 'long', year: 'numeric', month: 'long', day: 'numeric',
-  }
+  let title, message, verdict
 
   if (tourItem) {
     const returnDate = new Date(tourItem.end.date)
@@ -70,8 +74,23 @@ app.get('/', async (req, res) => {
     message += '.'
   }
 
-  res.render('index', {title, message, verdict})
+  const posts = fs.readdirSync(postsDir)
+    .sort((a, b) => {
+      const aTime = fs.statSync(`${postsDir}/${a}`).mtime.getTime()
+      const bTime = fs.statSync(`${postsDir}/${b}`).mtime.getTime()
+      return bTime - aTime
+    })
+    .map(post => post.replace(/[.]md$/, ''))
+
+  res.render('index', {title, message, verdict, posts})
 })
+
+app.get('/posts/:post', (req, res) => {
+  const post = fs.readFileSync(`${postsDir}/${req.params.post}.md`)
+  res.send(converter.makeHtml(post.toString()))
+})
+
+app.use(express.static('static'))
 
 app.listen(port, () => {
   console.log(`Server listening at http://localhost:${port}`)

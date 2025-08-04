@@ -1,0 +1,67 @@
+.selected-post {
+  background-color: lightgreen;
+}
+
+.verdict-no {
+  color: red;
+  margin-block-end: 0;
+  margin-block-start: 0;
+}
+
+.verdict-yes {
+  color: green;
+  margin-block-end: 0;
+  margin-block-start: 0;
+}
+
+#container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+#container > hr {
+  width: 98%;
+}
+
+#message {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+}
+
+#message > h1 {
+  font-size: 10vw;
+}
+
+#message > h2 {
+  font-size: xx-large;
+}
+
+#postFrame {
+  width: 47%;
+}
+
+#postList {
+  overflow-y: scroll;
+  width: 22%
+}
+
+#postList li {
+  font-size: larger;
+}
+
+#posts {
+  display: flex;
+  gap: 0.5em;
+  height: 100%;
+  justify-content: center;
+  margin: auto;
+  margin-top: 1em;
+  width: 96vw;
+}
+
+#posts > * {
+  height: 96%;
+}
