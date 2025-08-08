@@ -1,16 +1,28 @@
 const axios = require('axios')
-const fs = require('fs')
 const express = require('express')
+const fs = require('fs')
+const RSS = require('rss')
 const showdown = require('showdown')
 
 const app = express()
 const port = 3000
 
 const converter = new showdown.Converter()
+
 const postsDir = './posts'
+const previewLength = 100
 
 const localeDateStringOpts = {
   weekday: 'long', year: 'numeric', month: 'long', day: 'numeric',
+}
+
+function getSortedPosts() {
+  return fs.readdirSync(postsDir)
+    .sort((a, b) => {
+      const aTime = fs.statSync(`${postsDir}/${a}`).mtime.getTime()
+      const bTime = fs.statSync(`${postsDir}/${b}`).mtime.getTime()
+      return bTime - aTime
+    })
 }
 
 app.set('view engine', 'pug')
@@ -74,20 +86,59 @@ app.get('/', async (req, res) => {
     message += '.'
   }
 
-  const posts = fs.readdirSync(postsDir)
-    .sort((a, b) => {
-      const aTime = fs.statSync(`${postsDir}/${a}`).mtime.getTime()
-      const bTime = fs.statSync(`${postsDir}/${b}`).mtime.getTime()
-      return bTime - aTime
-    })
-    .map(post => post.replace(/[.]md$/, ''))
-
+  const posts = getSortedPosts().map(post => post.replace(/[.]md$/, ''))
   res.render('index', {title, message, verdict, posts})
 })
 
 app.get('/posts/:post', (req, res) => {
   const post = fs.readFileSync(`${postsDir}/${req.params.post}.md`)
   res.send(converter.makeHtml(post.toString()))
+})
+
+app.get('/rss.xml', (req, res) => {
+  const feed = new RSS({
+    title: 'IsChadOnTour.com',
+    description: 'Chad Miller Official, Online',
+    feed_url: 'https://www.ischadontour.com/rss.xml',
+    site_url: 'https://www.ischadontour.com/',
+  })
+
+  const streamOpts = {
+    encoding: 'utf8',
+    start: 0,
+    end: 99,
+  }
+
+  const buffer = Buffer.alloc(previewLength)
+
+  getSortedPosts()
+    .slice(0, 10)
+    .forEach(post => {
+      const bytesRead = fs.readSync(
+        fs.openSync(`${postsDir}/${post}`, 'r'),
+        buffer,
+        0,
+        previewLength,
+        0
+      )
+
+      let description = buffer.slice(0, bytesRead).toString()
+
+      if (description.length > previewLength - 3) {
+        description = `${description.substring(0, 97)}...`
+      }
+
+      const fileName = post.replace(/[.]md$/, '')
+
+      feed.item({
+        title: fileName,
+        description,
+        url: `https://ischadontour.com/#${fileName}`,
+      })
+    })
+
+  res.set('Content-Type', 'text/xml')
+  res.send(feed.xml({indent: true}))
 })
 
 app.use(express.static('static'))
