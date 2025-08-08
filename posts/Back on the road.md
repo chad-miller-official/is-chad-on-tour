@@ -2,7 +2,7 @@
 
 ## August 5th, 2025
 
-Often the question is asked, "is Chad on tour?" The answer, as of yesterday, is yes: I am on tour, and I will be back on August 24th (technically August 23rd, as Michael Cera Palin's last show of tour is in Atlanta). I registered ischadontour.com for the express purpose of answering this question, although it's since become a blog.
+Often the question is asked, "is Chad on tour?" The answer, as of today, is yes: I am on tour, and I will be back on August 24th (technically August 23rd, as Michael Cera Palin's last show of tour is in Atlanta). I registered ischadontour.com for the express purpose of answering this question, although it's since become a blog.
 
 Unlike the previous tour diary I kept for MCP's west coast tour, I do not plan to extensively document this tour this time around, nor do I plan to describe the shows or logistics of touring in great detail.  Rather, I'll be writing about whatever I do or think of *outside* of the van and venue - both literally and figuratively - which may or may not be directly influenced by the tour schedule and regimen. That said, I am looking forward to touring the Midwest and East Coast again, back in familiar territory I've toured countless times since 2014.
 

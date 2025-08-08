@@ -2,7 +2,7 @@ const selectedPostClass = 'selected-post'
 
 window.onload = () => {
   const postFrame = document.querySelector('#postFrame')
-  const postAnchors = document.querySelectorAll('#postList a')
+  const postAnchors = document.querySelectorAll('#postList ol a')
 
   const click = (anchor) => {
     postFrame.src = `posts/${anchor.text}`
