@@ -10,6 +10,7 @@ const port = 3000
 const converter = new showdown.Converter()
 
 const postsDir = './posts'
+const postOrderFile = `${postsDir}/order.txt`
 const previewLength = 100
 
 const localeDateStringOpts = {
@@ -17,19 +18,21 @@ const localeDateStringOpts = {
 }
 
 function getSortedPosts() {
-  return fs.readdirSync(postsDir)
-    .sort((a, b) => {
-      const aTime = fs.statSync(`${postsDir}/${a}`).mtime.getTime()
-      const bTime = fs.statSync(`${postsDir}/${b}`).mtime.getTime()
-      return bTime - aTime
-    })
+  const order = fs.readFileSync(postOrderFile)
+
+  return order
+    .toString()
+    .split("\n")
+    .filter(post => post && post !== '')
+    .map(post => `${post}.md`)
+    .reverse()
 }
 
 app.set('view engine', 'pug')
 
 app.get('/', async (req, res) => {
   const today = new Date()
-  today.setDate(today.getDate() - 1)
+  today.setDate(today.getDate())
 
   const tomorrow = new Date(today)
   tomorrow.setDate(today.getDate() + 1)

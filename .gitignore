@@ -1,3 +1,5 @@
 .idea/
 node_modules/
 static/google*.html
+posts/*.md
+posts/order.txt
