@@ -32,10 +32,9 @@ app.set('view engine', 'pug')
 
 app.get('/', async (req, res) => {
   const today = new Date()
-  today.setDate(today.getDate())
 
   const tomorrow = new Date(today)
-  tomorrow.setDate(today.getDate() + 1)
+  tomorrow.setHours(23, 59, 59)
 
   const eventsUrl = `https://www.googleapis.com/calendar/v3/calendars/${process.env.CALENDAR_ID}/events`
 
