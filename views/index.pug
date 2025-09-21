@@ -1,19 +1,22 @@
 html
   head
-    title= title
+    title=title
     link(rel='stylesheet', type='text/css', href='/css/styles.css')
     script(src='/js/icot.js')
   body
     div(id='container')
       div(id='message')
-        h1(class='verdict-' + verdict.toLowerCase())= verdict
-        h2= message
+        h1(class='verdict-' + verdict.toLowerCase())=verdict
+        h2=message
       hr
       div(id='posts')
         div(id='postList')
-          h2= 'The Latest'
+          h2
+            | The Latest &nbsp;
+          a(href='/rss.xml')
+            img(src='/img/rss.gif')
           ol(reversed)
             each post in posts
               li
-                a(href='#' + post)= post
+                a(href='#' + post)=post
         iframe(id='postFrame' src='./html/default.html' title='Landing page')

@@ -2,7 +2,21 @@ const selectedPostClass = 'selected-post'
 
 window.onload = () => {
   const postFrame = document.querySelector('#postFrame')
-  const postAnchors = document.querySelectorAll('#postList a')
+  const postAnchors = document.querySelectorAll('#postList ol a')
+
+  const click = (anchor) => {
+    postFrame.src = `posts/${anchor.text}`
+    postFrame.title = anchor.text
+    anchor.classList.add(selectedPostClass)
+    window.location.hash = `#${anchor.text}`
+  }
+
+  const postId = decodeURI(window.location.hash)
+
+  postAnchors.forEach(a => {
+    if (`#${a.text}` === postId) {
+      click(a)
+    }
 
   const click = (anchor) => {
     postFrame.src = `posts/${anchor.text}`

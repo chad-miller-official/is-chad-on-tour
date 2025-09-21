@@ -3,4 +3,4 @@
 lftp \
   -u chad@ischadontour.com \
   ftp://ftp.ischadontour.com \
-  -e 'mirror -R posts testing/posts; bye'
+  -e 'mirror -R --only-newer posts testing/posts; bye'
