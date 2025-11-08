@@ -97,6 +97,36 @@ app.get('/posts/:post', (req, res) => {
   res.send(converter.makeHtml(post.toString()))
 })
 
+const PAGE_SIZE = 9
+
+function getImagePaths(page, limit) {
+  return Array.from({length: limit}, (_, i) => {
+    const imageNumber = i + 1 + (limit * (page - 1))
+
+    if (imageNumber > 82) {
+      return null
+    } else {
+      const paddedImageNumber = imageNumber < 10 ? `0${imageNumber}` : imageNumber
+      return `/img/mystery-cd/L5P_05_NTao 0${paddedImageNumber}.jpg`
+    }
+  }).filter(imagePath => imagePath !== null)
+}
+
+app.get('/mystery-cd', (req, res) => {
+  const imagePaths = getImagePaths(1, PAGE_SIZE)
+  res.render('mystery-cd', {imagePaths})
+})
+
+app.get('/mystery-cd/page/:page', (req, res) => {
+  const imagePaths = getImagePaths(req.params.page, PAGE_SIZE)
+
+  if (imagePaths.length === 0) {
+    res.sendStatus(204)
+  } else {
+    res.send(imagePaths)
+  }
+})
+
 app.get('/rss.xml', (req, res) => {
   const feed = new RSS({
     title: 'IsChadOnTour.com',

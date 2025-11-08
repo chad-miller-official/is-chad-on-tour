@@ -4,6 +4,9 @@ html
     link(rel='stylesheet', type='text/css', href='/css/styles.css')
     script(src='/js/icot.js')
   body
+    div(id='toolbar')
+      img(src='/img/new.gif')
+      a(href='/mystery-cd')='Mystery CD'
     div(id='container')
       div(id='message')
         h1(class='verdict-' + verdict.toLowerCase())=verdict

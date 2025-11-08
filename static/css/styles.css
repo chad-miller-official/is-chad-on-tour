@@ -1,3 +1,23 @@
+@media only screen and (max-width: 1000px) {
+  .mystery-cd-image {
+    width: 30vw;
+  }
+
+  #mysteryCdImages {
+    width: 100%;
+  }
+}
+
+@media only screen and (min-width: 1001px) {
+  .mystery-cd-image {
+    width: 25vw;
+  }
+
+  #mysteryCdImages {
+    width: fit-content;
+  }
+}
+
 .selected-post {
   background-color: lightgreen;
 }
@@ -40,6 +60,13 @@
   font-size: xx-large;
 }
 
+#mysteryCdImages {
+  align-items: center;
+  display: grid;
+  gap: 0.5em;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
 #postFrame {
   width: 65vw;
 }
@@ -69,4 +96,14 @@
 
 #posts > * {
   height: 96%;
+}
+
+#toolbar {
+  align-items: center;
+  background-color: #efefef;
+  border: 1px dashed black;
+  display: flex;
+  gap: 0.5em;
+  padding: 5px;
+  position: fixed;
 }
