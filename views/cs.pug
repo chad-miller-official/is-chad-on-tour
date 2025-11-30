@@ -1,0 +1,66 @@
+html
+  head
+    link(rel='stylesheet' href='https://code.jquery.com/ui/1.14.1/themes/base/jquery-ui.css')
+    link(rel='stylesheet', type='text/css', href='/css/styles.css')
+    link(rel='preconnect' href='https://fonts.googleapis.com')
+    link(rel='preconnect' href='https://fonts.gstatic.com' crossorigin)
+    link(href='https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&display=swap' rel='stylesheet')
+    script(
+      src='https://code.jquery.com/jquery-3.7.1.min.js'
+      integrity='sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo='
+      crossorigin='anonymous'
+    )
+    script(
+      src='https://code.jquery.com/ui/1.14.1/jquery-ui.min.js'
+      integrity='sha256-AlTido85uXPlSyyaZNsjJXeCs07eSv3r43kyCVc8ChI='
+      crossorigin='anonymous'
+    )
+    script(
+      src='https://cdn.jsdelivr.net/npm/dayjs@1/dayjs.min.js'
+    )
+    script(
+      src='https://cdn.jsdelivr.net/npm/dayjs@1/plugin/advancedFormat.js'
+    )
+    script(
+      src='https://cdn.jsdelivr.net/npm/dayjs@1/plugin/customParseFormat.js'
+    )
+    script(
+      src='https://cdn.jsdelivr.net/npm/dayjs@1/plugin/weekOfYear.js'
+    )
+    script.
+      dayjs.extend(window.dayjs_plugin_advancedFormat)
+      dayjs.extend(window.dayjs_plugin_customParseFormat)
+      dayjs.extend(window.dayjs_plugin_weekOfYear)
+    script(type='module' src='/js/modules/cs.js')
+    script(src='/js/cs.js')
+    title='Customer & Sales Totals'
+  body
+    div(class='cs-container')
+      div(class='cs-days')
+        div
+          day-block(data-day-of-week="SUNDAY")
+        div(class='cs-decal-vertical')
+        div
+          day-block(data-day-of-week="THURSDAY")
+        div
+          day-block(data-day-of-week="MONDAY")
+        div
+          day-block(data-day-of-week="FRIDAY")
+        div
+          day-block(data-day-of-week="TUESDAY")
+        div
+          day-block(data-day-of-week="SATURDAY")
+        div
+          day-block(data-day-of-week="WEDNESDAY")
+        div(id='cornerDecal' style='width: 400px')
+      div(class='cs-toolbox ui-widget-toolkit')
+        h3(class='ui-widget-header')='Options'
+        div(class='input-group')
+          label(for='week')='Select a week:'
+          input(type='week' name='week' id='week')
+        div(class='input-group')
+          label(for='decal')='Select a decal:'
+          select(name='decal' id='decal')
+            option(value='')='--'
+            each decal in decals
+              option(value=decal)=decal
