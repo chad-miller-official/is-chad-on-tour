@@ -18,13 +18,21 @@
   }
 }
 
-#cornerDecal:hover {
-  cursor: move;
+#cornerDecal {
+  height: fit-content;
 }
 
 #cornerDecal > img {
   mix-blend-mode: multiply;
-  height: 100%;
+  width: 100%;
+}
+
+#verticalDecal {
+  height: fit-content;
+}
+
+#verticalDecal > img {
+  mix-blend-mode: multiply;
   width: 100%;
 }
 
@@ -36,16 +44,12 @@
 }
 
 .cs-days {
+  column-gap: 4px;
   display: grid;
   grid-template-columns: auto auto auto;
   grid-template-rows: auto auto auto auto;
   margin: 4em 0 7em 4em;
-  row-gap: 30px;
-}
-
-.cs-decal-vertical {
-  grid-row-start: span 4;
-  width: 80px;
+  row-gap: 40px;
 }
 
 .cs-toolbox {
@@ -53,6 +57,7 @@
   display: flex;
   flex-direction: column;
   height: fit-content;
+  margin: 1em;
   row-gap: 1em;
 }
 
@@ -61,8 +66,9 @@
   padding: 4px;
 }
 
-.cs-toolbox:hover {
-  cursor: move;
+.cs-vertical-decal {
+  grid-row-start: span 4;
+  width: 140px;
 }
 
 .input-group {
