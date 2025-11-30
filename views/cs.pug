@@ -37,31 +37,98 @@ html
   body
     div(class='cs-container')
       div(class='cs-days')
-        div
-          day-block(data-day-of-week="SUNDAY")
+        div(class='cs-day-sunday')
+          day-block(data-day-of-week="Sunday")
+        div(class='cs-day-monday')
+          day-block(data-day-of-week="Monday")
+        div(class='cs-day-tuesday')
+          day-block(data-day-of-week="Tuesday")
+        div(class='cs-day-wednesday')
+          day-block(data-day-of-week="Wednesday")
         div(class='cs-vertical-decal')
           div(id='verticalDecal')
-        div
-          day-block(data-day-of-week="THURSDAY")
-        div
-          day-block(data-day-of-week="MONDAY")
-        div
-          day-block(data-day-of-week="FRIDAY")
-        div
-          day-block(data-day-of-week="TUESDAY")
-        div
-          day-block(data-day-of-week="SATURDAY")
-        div
-          day-block(data-day-of-week="WEDNESDAY")
-        div(id='cornerDecal' style='width: 400px')
-      div(class='cs-toolbox ui-widget-toolkit')
-        h3(class='ui-widget-header')='Options'
-        div(class='input-group')
-          label(for='week')='Select a week:'
-          input(type='week' name='week' id='week')
-        div(class='input-group')
-          label(for='decal')='Select a decal:'
-          select(name='decal' id='decal')
-            option(value='')='--'
-            each decal in decals
-              option(value=decal)=decal
+        div(class='cs-day-thursday' style='grid-area: b1')
+          day-block(data-day-of-week="Thursday")
+        div(class='cs-day-friday' style='grid-area: b2')
+          day-block(data-day-of-week="Friday")
+        div(class='cs-day-saturday' style='grid-area: b3')
+          day-block(data-day-of-week="Saturday")
+        div(class='cs-day-decal' style='grid-area: b4')
+          div(id='cornerDecal' style='width: 400px')
+      div(class='cs-toolbox')
+        p='On the left, you will find a replica of a C&S sheet.'
+        p='Below this sentence, you will find various settings to alter the appearance of the C&S sheet. This toolbox is draggable and can be moved around your screen.'
+        p='All settings and their possible values were extracted via thorough analysis of 105 different C&S sheets.'
+        div(class='cs-toolbox-hints')
+          div
+            span='Tips:'
+            ul
+              li='Decals are draggable and can be moved and resized.'
+              li='Text can be entered into each cell.'
+              li='Only black and white printing is available :( we don\'t have any budget for toner'
+            p='Libraries used to make this:'
+            ul
+              li!='<a href="https://jquery.com/" target="_blank">jQuery</a>'
+              li!='<a href="https://jqueryui.com/" target="_blank">jQuery UI</a>, for <code>.draggable()</code> and <code>.resizable()</code> extensions'
+              li!='<a href="https://lit.dev/" target="_blank">lit.js</a>, for custom day-table <a href="https://developer.mozilla.org/en-US/docs/Web/API/Web_components" target="_blank">Web Component</a>'
+              li!='<a href="https://day.js.org/" target="_blank">day.js</a>, with <code>advancedFormat</code>, <code>customParseFormat</code>, and <code>weekOfYear</code> extensions, for parsing week picker'
+          div(id='toolbox' class='ui-widget-toolkit')
+            h3(class='ui-widget-header')='Options'
+            div(class='input-group')
+              label(for='week')='Week of:'
+              input(type='week' name='week' id='week')
+            div(class='input-group')
+              label(for='decal')='Decal:'
+              select(name='decal' id='decal')
+                option(value='')='--'
+                each decal in decals
+                  option(value=decal)=decal
+            div(class='input-group')
+              label(for='tableStyle')='Table color scheme:'
+              select(name='tableStyle' id='tableStyle')
+                option(value='bw')='Black & White'
+                option(value='classic1' selected)='Classic 1'
+                option(value='classic2')='Classic 2'
+                option(value='classic3')='Classic 3'
+            div(class='input-group vertical')
+              div='Decal placement:'
+              div
+                input(type='radio', name='decalPlacement', id='decalBottomRight', value='1', checked)
+                label(for='decalBottomRight')='Bottom-right corner'
+              div
+                input(type='radio', name='decalPlacement', id='decalTopRight', value='2')
+                label(for='decalTopRight')='Top-right corner'
+            div(class='input-group')
+              label(for='dateFormat')='Date format:'
+              select(name='dateFormat' id='dateFormat')
+                option(value='D-MMM-YY')='D-MMM-YY'
+                option(value='M/DD.YY')='M/DD.YY'
+                option(value='M\\DD\\.YY')='M\\DD\\.YY'
+                option(value='M\\DD\\YY')='M\\DD\\YY'
+                option(value='M\\DDYY')='M\\DDYY'
+                option(value='M/DD/YYYY')='M/DD/YYYY'
+                option(value='MDD/YYYY')='MDD/YYYY'
+                option(value='M/D/YY' selected)='M/D/YY'
+                option(value='M/D//YYYY')='M/D//YYYY'
+                option(value='M/D/YYYY')='M/D/YYYY'
+                option(value='M/DYYYY')='M/DYYYY'
+                option(value='MMM D')='MMM D'
+                option(value='MMM DD/YY')='MMM DD/YY'
+                option(value='MMM/D.YY')='MMM/D.YY'
+                option(value='MMMM DD\\YY')='MMMM DD\\YY'
+                option(value='MMMM D,YYYY')='MMMM D,YYYY'
+                option(value='#######')='#######'
+            div(class='input-group vertical')
+              div
+                input(type='checkbox', id='uppercaseHeader', name='headerEffects', value='true')
+                label(for='uppercaseHeader')='Uppercase day of week'
+              div
+                input(type='checkbox', id='boldHeader', name='headerEffects', value='true', checked)
+                label(for='boldHeader')='Bold day of week'
+              div
+                input(type='checkbox', id='grayscale',  name='grayscale', value='true')
+                label(for='grayscale')='Grayscale'
+            div(class='input-group')
+              input(type='range', id='dateOffset', name='dateOffset', min="0", max="25", step="1", value="0")
+              label(for='dateOffset')='Date offset'
+            button(onclick='window.print()')='🖨️ Print!'

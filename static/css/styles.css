@@ -18,22 +18,27 @@
   }
 }
 
-#cornerDecal {
-  height: fit-content;
-}
+@media print {
+  img {
+    filter: grayscale(100%);
+  }
 
-#cornerDecal > img {
-  mix-blend-mode: multiply;
-  width: 100%;
-}
+  .cs-container {
+    height: 100vh;
+    left: 0;
+    padding: 0;
+    position: absolute;
+    top: 0;
+    width: 100vw;
+  }
 
-#verticalDecal {
-  height: fit-content;
-}
+  .cs-days {
+    margin: 0;
+  }
 
-#verticalDecal > img {
-  mix-blend-mode: multiply;
-  width: 100%;
+  .cs-toolbox {
+    display: none;
+  }
 }
 
 .cs-container {
@@ -43,43 +48,70 @@
   justify-content: space-between;
 }
 
+.cs-day-sunday {
+  grid-area: a1;
+}
+
+.cs-day-monday {
+  grid-area: a2;
+}
+
+.cs-day-tuesday {
+  grid-area: a3;
+}
+
+.cs-day-wednesday {
+  grid-area: a4;
+}
+
 .cs-days {
   column-gap: 4px;
   display: grid;
+  grid-template-areas:
+    "a1 vertdecal b1"
+    "a2 vertdecal b2"
+    "a3 vertdecal b3"
+    "a4 vertdecal b4";
   grid-template-columns: auto auto auto;
   grid-template-rows: auto auto auto auto;
-  margin: 4em 0 7em 4em;
+  margin: 4em 4em 7em 4em;
   row-gap: 40px;
 }
 
 .cs-toolbox {
-  border: 1px solid lightgray;
-  display: flex;
-  flex-direction: column;
-  height: fit-content;
-  margin: 1em;
-  row-gap: 1em;
+  border-left: 1px dashed black;
+  padding-left: 1em;
+  width: 100%;
 }
 
-.cs-toolbox > h3 {
-  margin: 0;
-  padding: 4px;
+.cs-toolbox-hints {
+  display: flex;
+  justify-content: space-between;
 }
 
 .cs-vertical-decal {
-  grid-row-start: span 4;
-  width: 140px;
+  grid-area: vertdecal;
+  width: 110px;
 }
 
 .input-group {
   align-items: center;
   display: flex;
   column-gap: 1ch;
-  margin: 0 1em 1em 1em;
+  margin: 0 0.5em;
 }
 
-.input-group > input {
+.input-group:last-of-type {
+  margin-bottom: 0.5em;
+}
+
+.input-group > input, select {
   flex-grow: 1;
+}
+
+.input-group.vertical {
+  align-items: flex-start;
+  flex-direction: column;
 }
 
 .selected-post {
@@ -106,6 +138,15 @@
 
 #container > hr {
   width: 98%;
+}
+
+#cornerDecal {
+  height: fit-content;
+}
+
+#cornerDecal > img {
+  mix-blend-mode: multiply;
+  width: 100%;
 }
 
 #message {
@@ -170,4 +211,29 @@
   gap: 0.5em;
   padding: 5px;
   position: fixed;
+}
+
+#toolbox {
+  background-color: #f3f3f3;
+  border: 1px solid lightgray;
+  display: flex;
+  flex-direction: column;
+  height: fit-content;
+  margin: 0 1em;
+  row-gap: 1em;
+  width: fit-content;
+}
+
+#toolbox > h3 {
+  margin: 0;
+  padding: 4px;
+}
+
+#verticalDecal {
+  height: fit-content;
+}
+
+#verticalDecal > img {
+  mix-blend-mode: multiply;
+  width: 100%;
 }
