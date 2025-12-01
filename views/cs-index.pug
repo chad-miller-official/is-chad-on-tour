@@ -1,0 +1,68 @@
+html
+  head 
+    link(rel='stylesheet' href='https://code.jquery.com/ui/1.14.1/themes/base/jquery-ui.css')
+    link(rel='stylesheet', type='text/css', href='/css/styles.css')
+    script(
+      src='https://code.jquery.com/jquery-3.7.1.min.js'
+      integrity='sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo='
+      crossorigin='anonymous'
+    )
+    script(
+      src='https://code.jquery.com/ui/1.14.1/jquery-ui.min.js'
+      integrity='sha256-AlTido85uXPlSyyaZNsjJXeCs07eSv3r43kyCVc8ChI='
+      crossorigin='anonymous'
+    )
+    script(src='/js/cs-index.js')
+    title='Office Folk Art'
+  body(class='ooa-body')
+    div(class='ooa-container')
+      each decal in decals
+        img(src='img/cs-sheet/' + decal, class='ooa-image')
+      div(class='ooa-ui-element ooa-abstract ui-widget-content')
+        h1='Office Folk Art'
+        p
+          | Since the evolution of advanced cognition and aesthetic sensibility in humans, we as a
+          | species have had the insatiable desire to <strong>create</strong>. Regardless of race, sex, gender,
+          | religion, culture, nationality, or archaeological period, the desire to express oneself
+          | is hard-coded in our genome, and one way or another, we will each find ways to give our
+          | innermost thoughts, feelings, fears, and desires a tangible form. What form this takes,
+          | exactly, is up to the discretion of its creator; often times, one is limited by one's
+          | immediate environment and the tools available therein. One recalls the plight of the
+          | venerable Marquis de Sade, whose imprisonment in 1785 forced the genially perverse
+          | writer to pen his magnum opus <em>Les 120 Journées de Sodome</em> on small pieces of
+          | contraband paper painstakingly glued together.
+        p
+          | During the mid-1990s through the late 2000s, the rapid adoption of computer technology
+          | in workplaces both large and small, white-collar and blue-collar, by the lowliest
+          | unpaid-intern-personal-assistant to the well-heeled President of Engineering they serve,
+          | for email-drafting, spreadsheet-designing, project management, and every other
+          | conceivable task ripe for automation or expedition by digital electronics. It only be a
+          | matter of time before the anonymous mouse-clicking, keyboard-tapping office worker would
+          | discover the surprising versatility of the office workstation as a tool for creative
+          | expression. This was a time before social media; a time before the Amazon and Facebook
+          | oligarchs set both precedent and a detailed template for re-programming peoples'
+          | attention spans, atrophying their biological urge to create, and ultimately
+          | indoctrinating them into the non-denominational Church of Passive Consumption. This was
+          | a time of boredom; a time when one had to rely on one's own wit, intuition, and shrewd
+          | resourcefulness to lighten the hands on the clock above their desk <em>just enough</em> to
+          | accelerate the passage of time.
+        p='One such example - or rather, 105 of them - are juxtaposed around this browser window.'
+        p
+          | <strong><em>Office Folk Art</em></strong> is the name given to an interactive digital
+          | art gallery of digital graphics created by an anonymous retail front-end manager between
+          | February 2002 and April 2004. Each graphic was incorporated onto the lower-right (or, in
+          | one case, upper-right) corner of an 8.5"x11" sheet of paper, upon which weekly customer
+          | and sales volume data were hand-written into a series of Microsoft Excel tables and
+          | stored in a binder for posterity.
+        p
+          | We know not their name nor their motive. We know not the specifics of their brush, nor
+          | their canvas, nor their palette. Yet we know with near-laser-precision exactly what they
+          | were thinking and what they were feeling on any given date, within a four-day margin of
+          | error - in historian terms, a near-bullseye that allows us to piece together a narrative of
+          | an ordinary human being, spanning over two years of their professional life. In this
+          | curated collection of digital word art - painstakingly captured and restored for optimal
+          | viewing through a World Wide Web browser window - we not only see our friends, neighbors,
+          | and colleagues, but also ourselves.
+      div(class='ooa-ui-element ooa-link ui-widget-content')
+        a(href='/cs-sheet')
+          h1='Click here to re-imagine a customer and sales volume sheet'

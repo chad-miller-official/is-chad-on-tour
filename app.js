@@ -13,6 +13,8 @@ const postsDir = './posts'
 const postOrderFile = `${postsDir}/order.txt`
 const previewLength = 100
 
+const csDecalDir = 'static/img/cs-sheet'
+
 const localeDateStringOpts = {
   weekday: 'long', year: 'numeric', month: 'long', day: 'numeric',
 }
@@ -125,6 +127,20 @@ app.get('/mystery-cd/page/:page', (req, res) => {
   } else {
     res.send(imagePaths)
   }
+})
+
+function getCsSheetDecals() {
+  return fs.readdirSync(csDecalDir).filter(name => name !== 'vert')
+}
+
+app.get('/office-folk-art', (req, res) => {
+  const decals = getCsSheetDecals()
+  res.render('cs-index', {decals})
+})
+
+app.get('/cs-sheet', (req, res) => {
+  const decals = getCsSheetDecals()
+  res.render('cs-sheet', {decals})
 })
 
 app.get('/rss.xml', (req, res) => {
