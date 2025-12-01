@@ -20,8 +20,6 @@ $(window).on('load', () => {
 })
 
 $(() => {
-  $('#toolbox').draggable({cursor: 'move'})
-
   $('#week').on('input', (event) => {
     let date = dayjs(event.target.value, 'YYYY-Www').subtract(3, 'day')
 

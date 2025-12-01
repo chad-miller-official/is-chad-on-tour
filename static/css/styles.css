@@ -1,6 +1,20 @@
 @media only screen and (max-width: 1000px) {
+  .cs-container {
+    flex-direction: column-reverse;
+    width: fit-content;
+  }
+
+  .cs-toolbox {
+    border-bottom: 1px dashed black;
+    padding-bottom: 1em;
+  }
+
   .mystery-cd-image {
     width: 30vw;
+  }
+
+  .ooa-link {
+    z-index: 10000;
   }
 
   #mysteryCdImages {
@@ -9,8 +23,23 @@
 }
 
 @media only screen and (min-width: 1001px) {
+  .cs-toolbox {
+    border-left: 1px dashed black;
+    padding-left: 1em;
+  }
+
+  .cs-toolbox-hints {
+    flex-direction: column-reverse;
+  }
+  
   .mystery-cd-image {
     width: 25vw;
+  }
+
+  .ooa-abstract {
+    height: 40%;
+    max-width: 40%;
+    overflow-y: scroll;
   }
 
   #mysteryCdImages {
@@ -79,8 +108,6 @@
 }
 
 .cs-toolbox {
-  border-left: 1px dashed black;
-  padding-left: 1em;
   width: 100%;
 }
 
@@ -116,9 +143,6 @@
 
 .ooa-abstract {
   background-color: rgb(240, 198, 135);
-  height: 40%;
-  max-width: 40%;
-  overflow-y: scroll;
 }
 
 .ooa-abstract p {
@@ -138,6 +162,7 @@
 .ooa-link {
   background-color: rgb(244, 122, 255);
   color: rgb(65, 65, 65);
+  float: right;
   max-width: 20%;
   text-align: center;
 }

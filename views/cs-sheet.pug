@@ -16,6 +16,12 @@ html
       crossorigin='anonymous'
     )
     script(
+      src='https://cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js'
+      integrity='sha512-0bEtK0USNd96MnO4XhH8jhv3nyRF0eK87pJke6pkYf3cM0uDIhNJy9ltuzqgypoIFXw3JSuiy04tVk4AjpZdZw=='
+      crossorigin='anonymous'
+      referrerpolicy='no-referrer'
+    )
+    script(
       src='https://cdn.jsdelivr.net/npm/dayjs@1/dayjs.min.js'
     )
     script(
@@ -57,21 +63,9 @@ html
           div(id='cornerDecal' style='width: 400px')
       div(class='cs-toolbox')
         p='On the left, you will find a replica of a C&S sheet, almost identical to its real-life equivalent.'
-        p='Below this sentence, you will find various settings to alter the appearance of the C&S sheet. This toolbox is draggable and can be moved around your screen.'
+        p='On the right (this side), you will find various settings to alter the appearance of the C&S sheet.'
         p='All settings and their possible values were extracted via thorough analysis of 105 different C&S sheets.'
         div(class='cs-toolbox-hints')
-          div
-            span='Tips:'
-            ul
-              li='Decals are draggable and can be moved and resized.'
-              li='Text can be entered into each cell.'
-              li='Only black and white printing is available :( we don\'t have any budget for toner'
-            p='Libraries used to make this:'
-            ul
-              li!='<a href="https://jquery.com/" target="_blank">jQuery</a>'
-              li!='<a href="https://jqueryui.com/" target="_blank">jQuery UI</a>, for <code>.draggable()</code> and <code>.resizable()</code> extensions'
-              li!='<a href="https://lit.dev/" target="_blank">lit.js</a>, for custom day-table <a href="https://developer.mozilla.org/en-US/docs/Web/API/Web_components" target="_blank">Web Component</a>'
-              li!='<a href="https://day.js.org/" target="_blank">day.js</a>, with <code>advancedFormat</code>, <code>customParseFormat</code>, and <code>weekOfYear</code> extensions, for parsing week picker'
           div(id='toolbox' class='ui-widget-toolkit')
             h3(class='ui-widget-header')='Options'
             div(class='input-group')
@@ -132,3 +126,16 @@ html
               input(type='range', id='dateOffset', name='dateOffset', min="0", max="25", step="1", value="0")
               label(for='dateOffset')='Date offset'
             button(onclick='window.print()')='🖨️ Print!'
+          div
+            span='Tips:'
+            ul
+              li='Decals are draggable and can be moved and resized.'
+              li='Text can be entered into each cell.'
+              li='Only black and white printing is available :( we don\'t have any budget for toner'
+            p='Libraries used to make this:'
+            ul
+              li!='<a href="https://jquery.com/" target="_blank">jQuery</a>'
+              li!='<a href="https://jqueryui.com/" target="_blank">jQuery UI</a>, for <code>.draggable()</code> and <code>.resizable()</code> extensions'
+              li!='<a href="https://github.com/furf/jquery-ui-touch-punch" target=_"blank">jQuery UI Touch Punch</a>, so jQuery UI dragging and resizing can work on mobile'
+              li!='<a href="https://lit.dev/" target="_blank">lit.js</a>, for custom day-table <a href="https://developer.mozilla.org/en-US/docs/Web/API/Web_components" target="_blank">Web Component</a>'
+              li!='<a href="https://day.js.org/" target="_blank">day.js</a>, with <code>advancedFormat</code>, <code>customParseFormat</code>, and <code>weekOfYear</code> extensions, for parsing week picker'

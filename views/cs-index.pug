@@ -12,12 +12,21 @@ html
       integrity='sha256-AlTido85uXPlSyyaZNsjJXeCs07eSv3r43kyCVc8ChI='
       crossorigin='anonymous'
     )
+    script(
+      src='https://cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js'
+      integrity='sha512-0bEtK0USNd96MnO4XhH8jhv3nyRF0eK87pJke6pkYf3cM0uDIhNJy9ltuzqgypoIFXw3JSuiy04tVk4AjpZdZw=='
+      crossorigin='anonymous'
+      referrerpolicy='no-referrer'
+    )
     script(src='/js/cs-index.js')
     title='Office Folk Art'
   body(class='ooa-body')
     div(class='ooa-container')
       each decal in decals
         img(src='img/cs-sheet/' + decal, class='ooa-image')
+      div(class='ooa-ui-element ooa-link ui-widget-content')
+        a(href='/cs-sheet')
+          h1='Click here to re-imagine a customer and sales volume sheet'
       div(class='ooa-ui-element ooa-abstract ui-widget-content')
         h1='Office Folk Art'
         p
@@ -36,7 +45,7 @@ html
           | in workplaces both large and small, white-collar and blue-collar, by the lowliest
           | unpaid-intern-personal-assistant to the well-heeled President of Engineering they serve,
           | for email-drafting, spreadsheet-designing, project management, and every other
-          | conceivable task ripe for automation or expedition by digital electronics. It only be a
+          | conceivable task ripe for automation or expedition by digital electronics meant that it only be a
           | matter of time before the anonymous mouse-clicking, keyboard-tapping office worker would
           | discover the surprising versatility of the office workstation as a tool for creative
           | expression. This was a time before social media; a time before the Amazon and Facebook
@@ -63,6 +72,3 @@ html
           | curated collection of digital word art - painstakingly captured and restored for optimal
           | viewing through a World Wide Web browser window - we not only see our friends, neighbors,
           | and colleagues, but also ourselves.
-      div(class='ooa-ui-element ooa-link ui-widget-content')
-        a(href='/cs-sheet')
-          h1='Click here to re-imagine a customer and sales volume sheet'
