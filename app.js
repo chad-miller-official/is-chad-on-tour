@@ -133,7 +133,7 @@ function getCsSheetDecals() {
   return fs.readdirSync(csDecalDir).filter(name => name !== 'vert')
 }
 
-app.get('/office-outsider-art', (req, res) => {
+app.get('/office-folk-art', (req, res) => {
   const decals = getCsSheetDecals()
   res.render('cs-index', {decals})
 })
