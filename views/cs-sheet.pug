@@ -31,8 +31,8 @@ html
       dayjs.extend(window.dayjs_plugin_advancedFormat)
       dayjs.extend(window.dayjs_plugin_customParseFormat)
       dayjs.extend(window.dayjs_plugin_weekOfYear)
-    script(type='module' src='/js/modules/cs.js')
-    script(src='/js/cs.js')
+    script(type='module' src='/js/modules/cs-sheet.js')
+    script(src='/js/cs-sheet.js')
     title='Customer & Sales Totals'
   body
     div(class='cs-container')
@@ -56,7 +56,7 @@ html
         div(class='cs-day-decal' style='grid-area: b4')
           div(id='cornerDecal' style='width: 400px')
       div(class='cs-toolbox')
-        p='On the left, you will find a replica of a C&S sheet.'
+        p='On the left, you will find a replica of a C&S sheet, almost identical to its real-life equivalent.'
         p='Below this sentence, you will find various settings to alter the appearance of the C&S sheet. This toolbox is draggable and can be moved around your screen.'
         p='All settings and their possible values were extracted via thorough analysis of 105 different C&S sheets.'
         div(class='cs-toolbox-hints')

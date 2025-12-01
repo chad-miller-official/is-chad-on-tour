@@ -129,9 +129,18 @@ app.get('/mystery-cd/page/:page', (req, res) => {
   }
 })
 
+function getCsSheetDecals() {
+  return fs.readdirSync(csDecalDir).filter(name => name !== 'vert')
+}
+
+app.get('/office-outsider-art', (req, res) => {
+  const decals = getCsSheetDecals()
+  res.render('cs-index', {decals})
+})
+
 app.get('/cs-sheet', (req, res) => {
-  const decals = fs.readdirSync(csDecalDir)
-  res.render('cs', {decals})
+  const decals = getCsSheetDecals()
+  res.render('cs-sheet', {decals})
 })
 
 app.get('/rss.xml', (req, res) => {

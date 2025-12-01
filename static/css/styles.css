@@ -114,6 +114,34 @@
   flex-direction: column;
 }
 
+.ooa-abstract {
+  background-color: rgb(240, 198, 135);
+  height: 40%;
+  max-width: 40%;
+  overflow-y: scroll;
+}
+
+.ooa-abstract p {
+  line-height: 1.5;
+}
+
+.ooa-image {
+  mix-blend-mode: multiply;
+  position: absolute;
+}
+
+.ooa-link {
+  background-color: rgb(244, 122, 255);
+  color: rgb(65, 65, 65);
+  max-width: 20%;
+  text-align: center;
+}
+
+.ooa-ui-element {
+  padding: 2em;
+  width: fit-content;
+}
+
 .selected-post {
   background-color: lightgreen;
 }
