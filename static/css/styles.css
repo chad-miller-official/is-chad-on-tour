@@ -125,6 +125,11 @@
   line-height: 1.5;
 }
 
+.ooa-body {
+  background-image: url(/img/cs/cs2.jpg);
+  background-size: 80%;
+}
+
 .ooa-image {
   mix-blend-mode: multiply;
   position: absolute;

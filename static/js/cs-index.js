@@ -14,13 +14,6 @@ $(() => {
     $(image).draggable({cursor: 'move'}).css(style)
   })
 
-  $('.ooa-abstract').draggable({
-    containment: 'parent',
-    cursor: 'move',
-  })
-
-  $('.ooa-link').draggable({
-    containment: 'parent',
-    cursor: 'move',
-  })
+  $('.ooa-abstract').draggable({cursor: 'move'})
+  $('.ooa-link').draggable({cursor: 'move'})
 })
