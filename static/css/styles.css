@@ -261,6 +261,16 @@
   height: 96%;
 }
 
+#showList {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+#showList > iframe {
+  flex-grow: 1;
+}
+
 #toolbar {
   align-items: center;
   background-color: #efefef;
