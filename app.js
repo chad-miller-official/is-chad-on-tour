@@ -1,4 +1,3 @@
-const axios = require('axios')
 const express = require('express')
 const fs = require('fs')
 const RSS = require('rss')
@@ -13,11 +12,7 @@ const postsDir = './posts'
 const postOrderFile = `${postsDir}/order.txt`
 const previewLength = 100
 
-const csDecalDir = 'static/img/cs-sheet'
-
-const localeDateStringOpts = {
-  weekday: 'long', year: 'numeric', month: 'long', day: 'numeric',
-}
+const csDecalDir = 'static/img/cs-sheet/decal'
 
 function getSortedPosts() {
   const order = fs.readFileSync(postOrderFile)
@@ -33,65 +28,8 @@ function getSortedPosts() {
 app.set('view engine', 'pug')
 
 app.get('/', async (req, res) => {
-  const today = new Date()
-
-  const tomorrow = new Date(today)
-  tomorrow.setHours(23, 59, 59)
-
-  const eventsUrl = `https://www.googleapis.com/calendar/v3/calendars/${process.env.CALENDAR_ID}/events`
-
-  const params = {
-    key: process.env.API_KEY,
-    timeMin: today.toISOString(),
-    timeMax: tomorrow.toISOString(),
-  }
-
-  const axiosRes = await axios.get(eventsUrl, {params})
-
-  const tourItem = axiosRes.data.items.find(
-      item => item.summary.toLowerCase().includes('tour'))
-
-  let title, message, verdict
-
-  if (tourItem) {
-    const returnDate = new Date(tourItem.end.date)
-    returnDate.setDate(returnDate.getDate() + 1)
-
-    title = 'Chad is currently on tour.'
-    message = `Chad is on tour and will be back home on ${returnDate.toLocaleDateString(
-        'en-US', localeDateStringOpts)}.`
-
-    verdict = 'Yes'
-  } else {
-    const nextParams = {
-      key: process.env.API_KEY,
-      timeMin: today.toISOString(),
-      orderBy: 'startTime',
-      singleEvents: true,
-    }
-
-    title = 'Chad is not on tour.'
-    message = 'Chad is not on tour'
-    verdict = 'No'
-
-    const axiosResNext = await axios.get(eventsUrl, {params: nextParams})
-
-    const nextItem = axiosResNext.data.items.find(
-        item => item.summary.toLowerCase().includes('tour'))
-
-    if (nextItem) {
-      const startDate = new Date(nextItem.start.date)
-      startDate.setDate(startDate.getDate() + 1)
-
-      message += `, but will be on ${startDate.toLocaleDateString('en-US',
-          localeDateStringOpts)}`
-    }
-
-    message += '.'
-  }
-
   const posts = getSortedPosts().map(post => post.replace(/[.]md$/, ''))
-  res.render('index', {title, message, verdict, posts})
+  res.render('index', {posts})
 })
 
 app.get('/posts/:post', (req, res) => {
@@ -133,15 +71,12 @@ function getCsSheetDecals() {
   return fs.readdirSync(csDecalDir).filter(name => name !== 'vert')
 }
 
-app.get('/office-folk-art', (req, res) => {
-  const decals = getCsSheetDecals()
-  res.render('cs-index', {decals})
-})
-
 app.get('/cs-sheet', (req, res) => {
   const decals = getCsSheetDecals()
   res.render('cs-sheet', {decals})
 })
+
+app.get('/2025-shows', (req, res) => res.render('2025-shows'))
 
 app.get('/rss.xml', (req, res) => {
   const feed = new RSS({
@@ -150,12 +85,6 @@ app.get('/rss.xml', (req, res) => {
     feed_url: 'https://www.ischadontour.com/rss.xml',
     site_url: 'https://www.ischadontour.com/',
   })
-
-  const streamOpts = {
-    encoding: 'utf8',
-    start: 0,
-    end: 99,
-  }
 
   const buffer = Buffer.alloc(previewLength)
 

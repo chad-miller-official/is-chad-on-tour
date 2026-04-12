@@ -5,8 +5,19 @@ window.onload = () => {
   const postAnchors = document.querySelectorAll('#postList ol a')
 
   const click = (anchor) => {
-    postFrame.src = `posts/${anchor.text}`
-    postFrame.title = anchor.text
+    const placeholder = document.createElement('p')
+    placeholder.textContent = 'Loading...'
+
+    postFrame.replaceChildren(placeholder)
+    const headers = {'Content-Type': 'text/html'}
+
+    window.fetch(`posts/${anchor.text}`, {headers}).then((res) => {
+      res.text().then((text) => {
+        postFrame.replaceChildren()
+        postFrame.innerHTML = text
+      })
+    })
+
     anchor.classList.add(selectedPostClass)
     window.location.hash = `#${anchor.text}`
   }

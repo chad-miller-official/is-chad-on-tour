@@ -48,11 +48,11 @@ $(() => {
     const newDecal = event.target.value
 
     if (newDecal) {
-      cornerDecal.append($('<img>').attr('src', `img/cs-sheet/${newDecal}`)).css('height', 'fit-content')
+      cornerDecal.append($('<img>').attr('src', `img/cs-sheet/decal/${newDecal}`)).css('height', 'fit-content')
       verticalDecal.children('img').remove()
 
       if (VERTICAL_DECALS.includes(newDecal)) {
-        verticalDecal.append($('<img>').attr('src', `img/cs-sheet/vert/${newDecal}`)).css('height', 'fit-content')
+        verticalDecal.append($('<img>').attr('src', `img/cs-sheet/decal/vert/${newDecal}`)).css('height', 'fit-content')
       }
     }
   })

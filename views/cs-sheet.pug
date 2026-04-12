@@ -21,18 +21,10 @@ html
       crossorigin='anonymous'
       referrerpolicy='no-referrer'
     )
-    script(
-      src='https://cdn.jsdelivr.net/npm/dayjs@1/dayjs.min.js'
-    )
-    script(
-      src='https://cdn.jsdelivr.net/npm/dayjs@1/plugin/advancedFormat.js'
-    )
-    script(
-      src='https://cdn.jsdelivr.net/npm/dayjs@1/plugin/customParseFormat.js'
-    )
-    script(
-      src='https://cdn.jsdelivr.net/npm/dayjs@1/plugin/weekOfYear.js'
-    )
+    script(src='https://cdn.jsdelivr.net/npm/dayjs@1/dayjs.min.js')
+    script(src='https://cdn.jsdelivr.net/npm/dayjs@1/plugin/advancedFormat.js')
+    script(src='https://cdn.jsdelivr.net/npm/dayjs@1/plugin/customParseFormat.js')
+    script(src='https://cdn.jsdelivr.net/npm/dayjs@1/plugin/weekOfYear.js')
     script.
       dayjs.extend(window.dayjs_plugin_advancedFormat)
       dayjs.extend(window.dayjs_plugin_customParseFormat)
@@ -41,6 +33,62 @@ html
     script(src='/js/cs-sheet.js')
     title='Customer & Sales Totals'
   body
+    dialog(id='whatIsThis')
+      div(class='header-with-button')
+        h1='Office Folk Art'
+        button(command='close' commandfor='whatIsThis')
+          h3='Close'
+      p
+        | Since the evolution of advanced cognition and aesthetic sensibility in humans, we as a
+        | species have had the insatiable desire to <strong>create</strong>. Regardless of race,
+        | sex, gender, religion, culture, nationality, or archaeological period, the desire to
+        | express oneself is hard-coded in our genome, and one way or another, we will each find
+        | ways to give our innermost thoughts, feelings, fears, and desires a tangible form. What
+        | form this takes, exactly, is up to the discretion of its creator; often times, one is
+        | limited by one's immediate environment and the tools available therein. One recalls the
+        | plight of the venerable Marquis de Sade, whose imprisonment in 1785 forced the genially
+        | perverse writer to pen his magnum opus <em>Les 120 Journées de Sodome</em> on small
+        | pieces of contraband paper painstakingly glued together.
+      p
+        | During the mid-1990s through the late 2000s, the rapid adoption of computer technology
+        | in workplaces both large and small, white-collar and blue-collar, by the lowliest
+        | unpaid-intern-personal-assistant to the well-heeled President of Engineering they serve,
+        | for email-drafting, spreadsheet-designing, project management, and every other
+        | conceivable task ripe for automation or expedition by digital electronics meant that it
+        | only be a matter of time before the anonymous mouse-clicking, keyboard-tapping office
+        | worker would discover the surprising versatility of the office workstation as a tool for
+        | creative expression. This was a time before social media; a time before the Amazon and
+        | Facebook oligarchs set both precedent and a detailed template for re-programming peoples'
+        | attention spans, atrophying their biological urge to create, and ultimately
+        | indoctrinating them into the non-denominational Church of Passive Consumption. This was
+        | a time of boredom; a time when one had to rely on one's own wit, intuition, and shrewd
+        | resourcefulness to lighten the hands on the clock above their desk <em>just enough</em>
+        | to accelerate the passage of time.
+      p
+        | This page contains an interactive tactile art exhibit wherein 105 digital graphics
+        | created by an anonymous retail front-end manager between February 2002 and April 2004.
+        | Each graphic was incorporated onto the lower-right (or, in one case, upper-right) corner
+        | of an 8.5"x11" sheet of paper, upon which weekly customer and sales volume data were
+        | hand-written into a series of Microsoft Excel tables and stored in a binder for posterity.
+      p(class='gallery w4')
+        a(href='/img/cs-sheet/example/cs1.jpg' target='_blank')
+          img(src='/img/cs-sheet/example/cs1.jpg')
+        a(href='/img/cs-sheet/example/cs2.jpg' target='_blank')
+          img(src='/img/cs-sheet/example/cs2.jpg')
+        a(href='/img/cs-sheet/example/cs3.jpg' target='_blank')
+          img(src='/img/cs-sheet/example/cs3.jpg')
+        a(href='/img/cs-sheet/example/cs4.jpg' target='_blank')
+          img(src='/img/cs-sheet/example/cs4.jpg')
+      p
+        | We know not their name nor their motive. We know not the specifics of their brush, nor
+        | their canvas, nor their palette. Yet we know with near-laser-precision exactly what they
+        | were thinking and what they were feeling on any given date, within a four-day margin of
+        | error - in historian terms, a near-bullseye that allows us to piece together a narrative
+        | of an ordinary human being, spanning over two years of their professional life. In this
+        | curated collection of digital word art - painstakingly captured and restored for optimal
+        | viewing through a World Wide Web browser window - we not only see our friends, neighbors,
+        | and colleagues, but also ourselves.
+    include includes/header.pug
     div(class='cs-container')
       div(class='cs-days')
         div(class='cs-day-sunday')
@@ -62,6 +110,8 @@ html
         div(class='cs-day-decal' style='grid-area: b4')
           div(id='cornerDecal' style='width: 400px')
       div(class='cs-toolbox')
+        button(command='show-modal' commandfor='whatIsThis')
+          h2='What is this?'
         p='On the left, you will find a replica of a C&S sheet, almost identical to its real-life equivalent.'
         p='On the right (this side), you will find various settings to alter the appearance of the C&S sheet.'
         p='All settings and their possible values were extracted via thorough analysis of 105 different C&S sheets.'
